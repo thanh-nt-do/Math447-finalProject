@@ -39,6 +39,11 @@ $(".btn").on("click", function () {
         return;
     } 
 
+    if (a.isNaN() || !a.isFinite() || b.isNaN() || !b.isFinite() || c.isNaN() || !c.isFinite()) {
+        alert("Coefficient not valid!");
+        return;
+    }
+
     if (a.abs() == 0 && b.abs() == 0 && c.abs() == 0) {
         $("#button").after("<h3 class='result'>There are infinitely many solutions.</h3>");
         // alert("There are infinitely many solutions.");
