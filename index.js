@@ -31,9 +31,9 @@ $(".btn").on("click", function () {
     const cCoef = $("input[name='cCoefficient']").val();
     var a,b,c;
     try {
-        a = Complex(aCoef);
-        b = Complex(bCoef);
-        c = Complex(cCoef);
+        a = Complex(math.evaluate(aCoef));
+        b = Complex(math.evaluate(bCoef));
+        c = Complex(math.evaluate(cCoef));
     } catch (error) {
         alert("Coefficient not valid!");
         return;
@@ -47,16 +47,15 @@ $(".btn").on("click", function () {
         // alert("There is no soluion.");
     } else if (a.abs() == 0) {
         const sol = c.mul(-1).div(b).round(3);
-        $("#button").after("<h3 class='result' id='result'>" + "The solution to the function: " + "</h3>");
-        $("#result").after("<p class='result'>" + sol.toString() + "</p>");
-        // $("#button").after("<h3 class='result'>" + "The solution is: " + sol.toString() + "</h3>");
+        $("#button").after("<h4 class='result' id='result'>" + "The solution to the function: " + "</h4>");
+        $("#result").after("<p class='result'>z<sub>1</sub> = " + sol.toString() + "</p>");
     } else {
         const quadFuction = new quadraticFunction(a,b,c);
         const solutions = quadFuction.solveEquation();  
-        $("#button").after("<h3 class='result' id='result'>" + "The solution to the function: " + "</h3>");
+        $("#button").after("<h4 class='result' id='result'>" + "The solution to the function: " + "</h4>");
         for (let i = 0; i < solutions.length; i++) {
             const sol = solutions[i].round(3);
-            $("#result").after("<p class='result'>" + sol.toString() + "</p>");
+            $(".copyright").before("<p class='result'>z<sub>" + (i+1) + "</sub> = " + sol.toString() + "</p>");
         }      
     }
 })
