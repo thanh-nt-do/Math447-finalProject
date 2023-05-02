@@ -29,6 +29,12 @@ $(".btn").on("click", function () {
     const aCoef = $("input[name='aCoefficient']").val();
     const bCoef = $("input[name='bCoefficient']").val();
     const cCoef = $("input[name='cCoefficient']").val();
+
+    if (aCoef == "" || bCoef == "" || cCoef == "") {
+        alert("Coefficient not valid!");
+        return;
+    }
+
     var a,b,c;
     try {
         a = Complex(math.evaluate(aCoef));
@@ -48,7 +54,7 @@ $(".btn").on("click", function () {
         $("#button").after("<h3 class='result'>There are infinitely many solutions.</h3>");
         // alert("There are infinitely many solutions.");
     } else if (a.abs() == 0 && b.abs() == 0) {
-        $("#button").after("<h3 class='result'>There is no soluion.</h3>");
+        $("#button").after("<h3 class='result'>There is no solution.</h3>");
         // alert("There is no soluion.");
     } else if (a.abs() == 0) {
         const sol = c.mul(-1).div(b).round(3);
